@@ -36,29 +36,56 @@ public class CrosswordGenerator : MonoBehaviour
 
         int rows = best.GetLength(0);
         int cols = best.GetLength(1);
-        GetComponent<GridLayoutGroup>().constraintCount = cols;
-
+        GridLayoutGroup layout = GetComponent<GridLayoutGroup>();
+        layout.constraintCount = cols;
+        float cellSize = Mathf.Floor((GetComponent<RectTransform>().rect.width / cols) - 1);
+        layout.cellSize = new Vector2(cellSize, cellSize);
+        layout.padding = new RectOffset((int)((GetComponent<RectTransform>().rect.width - (cellSize * cols + cols)) / 2), 0, 2, 0);
+        foreach (var wl in answerKey)
+        {
+            if (FindStartIndex(best, wl.word, wl.direction, out int sx, out int sy))
+            {
+                Debug.Log($"{wl.word} starts at ({sx},{sy}) {wl.direction}");
+                wl.x = sx;
+                wl.y = sy;
+            }
+            
+            else
+                Debug.LogWarning($"Could not find placement for {wl.word}");
+        }
         for (int y = 0; y < rows; y++)
         {
             for (int x = 0; x < cols; x++)
             {
-                Debug.Log(best[y, x]);
                 if(best[y, x].Equals(' '))
                 {
-                    Instantiate(empty_box, Vector2.zero, Quaternion.identity, transform);
+                    GameObject box = Instantiate(empty_box, Vector2.zero, Quaternion.identity, transform);
+                    box.name = $"({y},{x})";
                 }
                 else
                 {
-                    Instantiate(default_box, Vector2.zero, Quaternion.identity, transform);
+                    GameObject box = Instantiate(default_box, Vector2.zero, Quaternion.identity, transform);
+                    box.GetComponent<CrossWordBox>().SetLetter(best[y, x]);
+                    WordLocation loc = answerKey.Find(word => word.x == x && word.y == y);
+                    if(loc != null)
+                    {
+                        box.GetComponent<CrossWordBox>().SetNumber((answerKey.IndexOf(loc) + 1).ToString());
+                    }
+                    else
+                    {
+                        box.GetComponent<CrossWordBox>().SetNumber("");
+                    }
+                    box.name = $"({y},{x})";
                 }
             }     
         }
 
-        PrintGrid(best);
-        foreach(WordLocation wl in answerKey)
-        {
-            Debug.Log($"{wl.x}, {wl.y}, {wl.word}, {wl.direction}");
-        }
+
+        // //PrintGrid(best);
+        // foreach(WordLocation wl in answerKey)
+        // {
+        //     Debug.Log($"{wl.x}, {wl.y}, {wl.word}, {wl.direction}");
+        // }
     }
 
     public char[,] IterativePlacement(List<string> words, int maxWords)
@@ -266,7 +293,7 @@ public class CrosswordGenerator : MonoBehaviour
             }
             grid[cy, cx] = word[i];
         }
-        currentBest.Add(new WordLocation() {x=x, y=y, word=word, direction=dir});
+        currentBest.Add(new WordLocation() {word=word, direction=dir});
     }
 
     private bool CheckBounds(string word, int x, int y, Direction dir)
@@ -338,21 +365,14 @@ public class CrosswordGenerator : MonoBehaviour
 
             if (score > bestScore)
             {
-                Debug.Log(i + " NEW BEST CROSSWORD");
                 bestScore = score;
                 bestGrid = crossword;
                 if(i == 0)
                 {
-                    print("count: " + currentBest.Count);
-                    foreach(WordLocation wl in currentBest)
-                    {
-                        Debug.Log(wl);
-                    }
                     answerKey = currentBest.GetRange(0, maxWords);
                 }
                 else
                 {
-                    Debug.Log("Count: " + currentBest.Count);
                     answerKey = currentBest.GetRange(currentBest.Count-(maxWords), maxWords);
                 }
             }
@@ -430,6 +450,74 @@ public class CrosswordGenerator : MonoBehaviour
         return shrunk;
     }
 
+    public bool FindStartIndex(char[,] grid, string word, Direction dir, out int startX, out int startY)
+    {
+        int rows = grid.GetLength(0);
+        int cols = grid.GetLength(1);
+
+        startX = -1;
+        startY = -1;
+
+        for (int y = 0; y < rows; y++)
+        {
+            for (int x = 0; x < cols; x++)
+            {
+                // First letter must match
+                if (grid[y, x] != word[0])
+                    continue;
+
+                // Check HORIZONTAL
+                if (dir == Direction.Horizontal)
+                {
+                    if (x + word.Length > cols)
+                        continue; // would overflow grid
+
+                    bool match = true;
+                    for (int i = 0; i < word.Length; i++)
+                    {
+                        if (grid[y, x + i] != word[i])
+                        {
+                            match = false;
+                            break;
+                        }
+                    }
+
+                    if (match)
+                    {
+                        startX = x;
+                        startY = y;
+                        return true;
+                    }
+                }
+
+                // Check VERTICAL
+                else
+                {
+                    if (y + word.Length > rows)
+                        continue; // would overflow grid
+
+                    bool match = true;
+                    for (int i = 0; i < word.Length; i++)
+                    {
+                        if (grid[y + i, x] != word[i])
+                        {
+                            match = false;
+                            break;
+                        }
+                    }
+
+                    if (match)
+                    {
+                        startX = x;
+                        startY = y;
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
 }
 
 
@@ -437,20 +525,6 @@ public class CrosswordGenerator : MonoBehaviour
 
 public static class ListExtensions
 {
-    public static void Shuffle<T>(this IList<T> list)
-    {
-        System.Random rng = new System.Random(); // Initialize a new Random instance
-        int n = list.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = rng.Next(n + 1); // Get a random index from 0 to n (inclusive)
-            T value = list[k];       // Store the value at the random index
-            list[k] = list[n];       // Move the last un-shuffled element to the random index
-            list[n] = value;         // Place the stored value at the last un-shuffled position
-        }
-    }
-
     public static T Pop<T>(this List<T> list)
     {
         if (list.Count == 0)
