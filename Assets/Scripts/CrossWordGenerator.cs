@@ -34,6 +34,8 @@ public class CrosswordGenerator : MonoBehaviour
         char[,] best = RepeatedGeneration(words, maxWords: maxWords, iterations: 100);
         best = ShrinkGrid(best);
 
+
+        //Fix word locations after shrinking
         int rows = best.GetLength(0);
         int cols = best.GetLength(1);
         GridLayoutGroup layout = GetComponent<GridLayoutGroup>();
@@ -45,14 +47,12 @@ public class CrosswordGenerator : MonoBehaviour
         {
             if (FindStartIndex(best, wl.word, wl.direction, out int sx, out int sy))
             {
-                Debug.Log($"{wl.word} starts at ({sx},{sy}) {wl.direction}");
                 wl.x = sx;
                 wl.y = sy;
             }
-            
-            else
-                Debug.LogWarning($"Could not find placement for {wl.word}");
         }
+
+        //Set up puzzle
         for (int y = 0; y < rows; y++)
         {
             for (int x = 0; x < cols; x++)
@@ -60,22 +60,27 @@ public class CrosswordGenerator : MonoBehaviour
                 if(best[y, x].Equals(' '))
                 {
                     GameObject box = Instantiate(empty_box, Vector2.zero, Quaternion.identity, transform);
-                    box.name = $"({y},{x})";
+                    box.name = $"{y},{x}";
                 }
                 else
                 {
                     GameObject box = Instantiate(default_box, Vector2.zero, Quaternion.identity, transform);
                     box.GetComponent<CrossWordBox>().SetLetter(best[y, x]);
-                    WordLocation loc = answerKey.Find(word => word.x == x && word.y == y);
-                    if(loc != null)
+                    List<WordLocation> loc = answerKey.FindAll(word => word.x == x && word.y == y);
+                    if(loc.Count > 0)
                     {
-                        box.GetComponent<CrossWordBox>().SetNumber((answerKey.IndexOf(loc) + 1).ToString());
+                        foreach(WordLocation wl in loc)
+                        {
+                            Debug.Log($"{wl.x}, {wl.y}, {wl.word}, {wl.direction}");
+                        }
+                        box.GetComponent<CrossWordBox>().SetNumber((answerKey.IndexOf(loc[0]) + 1).ToString());
+                        box.GetComponent<CrossWordBox>().wordLocation = loc;
                     }
                     else
                     {
                         box.GetComponent<CrossWordBox>().SetNumber("");
                     }
-                    box.name = $"({y},{x})";
+                    box.name = $"{y},{x}";
                 }
             }     
         }
