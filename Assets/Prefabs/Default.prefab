@@ -216,6 +216,7 @@ MonoBehaviour:
   numberText: {fileID: 996864611994098693}
   backgroundImage: {fileID: 5967412409939690893}
   generator: {fileID: 0}
+  direction: 1
 --- !u!114 &316264436535774891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,19 +260,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5383674106080974596}
-        m_TargetAssemblyTypeName: CrossWordBox, Assembly-CSharp
-        m_MethodName: HighlightDirection
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8033054728900595595
 GameObject:
   m_ObjectHideFlags: 0

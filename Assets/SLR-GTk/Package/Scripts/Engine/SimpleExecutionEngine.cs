@@ -15,7 +15,7 @@ namespace Engine {
         public class LogerFilter : PredictionFilter<string> {
 
             public FilterUnit<string> Filter(FilterUnit<String> input) {
-                Debug.Log("Got probs: " + string.Join(", ", input.probabilities));
+                // Debug.Log("Got probs: " + string.Join(", ", input.probabilities));
                 //CsvWriter csvWriter = GameObject.Find("GameControllers").GetComponent<CsvWriter>();
                 //csvWriter.AddValue(string.Join(" & ", input.probabilities));
                 return input;
@@ -138,14 +138,10 @@ namespace Engine {
             Poll();
             recognizer.outputFilters.Clear();
             recognizer.outputFilters.Add(new LogerFilter());
-
-            //WE WILL CHANGE THIS FILTER LIST TO THE ACTUAL FILTER LIST OF WORDS IN THE PUZZLE EVENTUALLY
-            //List<string> filter = new List<string>(GameSettings.wordsPerLevel);
-            List<string> filter = new List<string>() {"happy", "bite"};
+            List<string> filter = new List<string>(GameObject.Find("Crossword").GetComponent<CrosswordGenerator>().wordList);
             recognizer.outputFilters.Add(new FocusSublistFilter<string>(MakeLowercase(filter)));
             recognizer.outputFilters.Add(new LogerFilter());
-            // recognizer.outputFilters.Add(new Thresholder<string>(0.8f));
-            
+            // recognizer.outputFilters.Add(new Thresholder<string>(0.8f));      
         }
 
         public void Poll() {

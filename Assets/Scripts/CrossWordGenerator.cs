@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System;
 using UnityEngine.UI;
+using Engine;
 
 public class CrosswordGenerator : MonoBehaviour
 {
@@ -20,11 +21,17 @@ public class CrosswordGenerator : MonoBehaviour
         public int y;
         public string word;
         public Direction direction;
+        public string clue;
     }
-    public List<WordLocation> answerKey = new List<WordLocation>();
+    public List<List<WordLocation>> reducedAnswerKey = new List<List<WordLocation>>();
     public GameObject empty_box;
     public GameObject default_box;
+    public int selectedIndex = 1;
+    public string selectedWord = "";
+    public ClueManager clueManager;
+    private List<WordLocation> answerKey = new List<WordLocation>();
     private List<WordLocation> currentBest = new List<WordLocation>();
+    public List<string> wordList = new List<string>();
 
     void Start()
     {
@@ -52,6 +59,28 @@ public class CrosswordGenerator : MonoBehaviour
             }
         }
 
+        //Fill in reduced answer key
+        foreach (WordLocation wl in answerKey)
+        {
+            List<WordLocation> temp = new List<WordLocation>();
+            temp.Add(wl);
+            if(reducedAnswerKey.FindIndex(list => list[0].x == wl.x && list[0].y == wl.y) != -1)
+            {
+                reducedAnswerKey[reducedAnswerKey.FindIndex(list => list[0].x == wl.x && list[0].y == wl.y)].Add(wl);
+                continue;
+            }
+            reducedAnswerKey.Add(temp);
+        }
+
+        //Set clues in reduced answer key
+        foreach (List<WordLocation> wl in reducedAnswerKey)
+        {
+            foreach (WordLocation w in wl)
+            {
+                w.clue = clueManager.clues[w.word];
+            }
+        }
+
         //Set up puzzle
         for (int y = 0; y < rows; y++)
         {
@@ -69,12 +98,8 @@ public class CrosswordGenerator : MonoBehaviour
                     List<WordLocation> loc = answerKey.FindAll(word => word.x == x && word.y == y);
                     if(loc.Count > 0)
                     {
-                        foreach(WordLocation wl in loc)
-                        {
-                            Debug.Log($"{wl.x}, {wl.y}, {wl.word}, {wl.direction}");
-                        }
-                        box.GetComponent<CrossWordBox>().SetNumber((answerKey.IndexOf(loc[0]) + 1).ToString());
-                        box.GetComponent<CrossWordBox>().wordLocation = loc;
+                        box.GetComponent<CrossWordBox>().SetNumber((reducedAnswerKey.FindIndex(list => list[0].x == x && list[0].y == y) + 1).ToString());
+                        box.GetComponent<CrossWordBox>().direction = loc[0].direction;
                     }
                     else
                     {
@@ -84,13 +109,14 @@ public class CrosswordGenerator : MonoBehaviour
                 }
             }     
         }
-
-
-        // //PrintGrid(best);
-        // foreach(WordLocation wl in answerKey)
-        // {
-        //     Debug.Log($"{wl.x}, {wl.y}, {wl.word}, {wl.direction}");
-        // }
+        selectedWord = answerKey[0].word;
+        HighlightDirection(reducedAnswerKey[0][0].direction, 1);
+        foreach(WordLocation wl in answerKey)
+        {
+            wordList.Add(wl.word);
+        }
+        GameObject.Find("SimpleSLREngine(NoCanvas)").GetComponent<SimpleExecutionEngine>().enabled = true;
+        GameObject.Find("HoldToSign").GetComponent<CheckCrossWord>().enabled = true;
     }
 
     public char[,] IterativePlacement(List<string> words, int maxWords)
@@ -523,9 +549,82 @@ public class CrosswordGenerator : MonoBehaviour
 
         return false;
     }
+
+    public void HighlightDirection(Direction direction, int number)
+    {
+        if(number == -1) return;
+        //Clear previous highlights
+        ClearAllHighlights();
+
+        selectedIndex = number - 1;
+
+        if(direction == Direction.Horizontal)
+        {   
+            WordLocation word = reducedAnswerKey[selectedIndex].Find(x => x.direction == Direction.Horizontal);
+            for (int i = word.x; i < word.word.Length + word.x; i++)
+            {
+                transform.Find($"{word.y},{i}").gameObject.GetComponent<CrossWordBox>().HighlightBox();
+            }
+            if(reducedAnswerKey[selectedIndex].Count > 1)
+            {
+                transform.Find($"{word.y},{word.x}").gameObject.GetComponent<CrossWordBox>().ChangeDirection(Direction.Vertical);
+            }
+            selectedWord = word.word;
+            clueManager.SetClue(word.clue);
+        }
+        else
+        {
+            WordLocation word = reducedAnswerKey[selectedIndex].Find(x => x.direction == Direction.Vertical);
+            for (int i = word.y; i < word.word.Length + word.y; i++)
+            {
+                transform.Find($"{i},{word.x}").gameObject.GetComponent<CrossWordBox>().HighlightBox();
+            }
+            if(reducedAnswerKey[selectedIndex].Count > 1)
+            {
+                transform.Find($"{word.y},{word.x}").gameObject.GetComponent<CrossWordBox>().ChangeDirection(Direction.Horizontal);
+            }
+            selectedWord = word.word;
+            clueManager.SetClue(word.clue);
+        }
+    }
+
+    public void ShowWord(string word)
+    {
+        WordLocation wl = reducedAnswerKey[selectedIndex].Find(x => x.word == word);
+        int x = wl.x;
+        int y = wl.y;
+        Direction dir = wl.direction;
+        if (dir == Direction.Horizontal)
+        {
+            for (int i = x; i < x + word.Length; i++)
+            {
+                Debug.Log($"{y},{i}");
+                CrossWordBox box = transform.Find($"{y},{i}").gameObject.GetComponent<CrossWordBox>();
+                if(box!=null) box.letterText.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = y; i < y + word.Length; i++)
+            {
+                CrossWordBox box = transform.Find($"{i},{x}").gameObject.GetComponent<CrossWordBox>();
+                if(box!=null) box.letterText.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void ClearAllHighlights()
+    {
+        
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if(transform.GetChild(i).gameObject.GetComponent<CrossWordBox>() == null) continue;
+            transform.GetChild(i).gameObject.GetComponent<CrossWordBox>().backgroundImage.color = Color.white;
+        }
+    }
+
+
 }
-
-
 
 
 public static class ListExtensions
