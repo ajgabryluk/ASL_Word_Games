@@ -6,18 +6,22 @@ using Mediapipe.Tasks.Vision.HandLandmarker;
 using Model;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using RunningMode = Mediapipe.Tasks.Vision.Core.RunningMode;
 
 namespace Engine {
     public class SimpleExecutionEngine : MonoBehaviour
     {
-        public class LogerFilter : PredictionFilter<string> {
+        public LogerFilter myLoger;
 
+        public class LogerFilter : PredictionFilter<string> {
+            public FilterUnit<string> LastResult;
             public FilterUnit<string> Filter(FilterUnit<String> input) {
-                // Debug.Log("Got probs: " + string.Join(", ", input.probabilities));
-                //CsvWriter csvWriter = GameObject.Find("GameControllers").GetComponent<CsvWriter>();
-                //csvWriter.AddValue(string.Join(" & ", input.probabilities));
+                Debug.Log("Got probs: " + string.Join(", ", input.probabilities));
+                Debug.Log("Got map: " + string.Join(", ", input.mapping));
+
+                LastResult = input;
                 return input;
             }
         }
@@ -115,8 +119,6 @@ namespace Engine {
                     }
                 }
                 
-                
-                
                 //Debug.Log("Input array got " + inputArray.Count);
 
                 if (inputArray.Count > 0)
@@ -126,7 +128,7 @@ namespace Engine {
                 buffer.Clear();
             });
             recognizer.AddCallback("default", (translation) => {
-               // Debug.Log(translation);
+               //Debug.Log(translation);
             });
             if (inputCamera) inputCamera.AddCallback("default", image => {
                     posePredictor.Single(image, (int)(Time.realtimeSinceStartup * 1000));
@@ -137,13 +139,23 @@ namespace Engine {
             buffer.trigger = new NoTrigger<HandLandmarkerResult>();
             Poll();
             recognizer.outputFilters.Clear();
-            recognizer.outputFilters.Add(new LogerFilter());
-            List<string> filter = new List<string>(GameObject.Find("Crossword").GetComponent<CrosswordGenerator>().wordList);
+            List<string> filter = new List<string>();
+            if(SceneManager.GetActiveScene().name == "CrosswordPuzzle")
+                filter = new List<string>(GameObject.Find("Crossword").GetComponent<CrosswordGenerator>().wordList);
+            else if(SceneManager.GetActiveScene().name == "Wordle")
+                filter = new List<string>(GameObject.Find("GameManager").GetComponent<WordleManager>().words);
+            Debug.Log("Filter: " + filter.Count);
             recognizer.outputFilters.Add(new FocusSublistFilter<string>(MakeLowercase(filter)));
-            recognizer.outputFilters.Add(new LogerFilter());
-            // recognizer.outputFilters.Add(new Thresholder<string>(0.8f));      
+            myLoger = new LogerFilter();
+            recognizer.outputFilters.Add(myLoger);
+            //recognizer.outputFilters.Add(new Thresholder<string>(0.8f));      
         }
 
+        public void UpdateFilters(List<string> focusedList) {
+            recognizer.outputFilters.Add(new FocusSublistFilter<string>(focusedList));
+            myLoger = new LogerFilter();
+            recognizer.outputFilters.Add(myLoger);
+        }
         public void Poll() {
             inputCamera.Poll();
         }
