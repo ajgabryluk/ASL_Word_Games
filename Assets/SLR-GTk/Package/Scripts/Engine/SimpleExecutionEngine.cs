@@ -144,6 +144,8 @@ namespace Engine {
                 filter = new List<string>(GameObject.Find("Crossword").GetComponent<CrosswordGenerator>().wordList);
             else if(SceneManager.GetActiveScene().name == "Wordle")
                 filter = new List<string>(GameObject.Find("GameManager").GetComponent<WordleManager>().words);
+            else if(SceneManager.GetActiveScene().name == "SpellingBee")
+                filter = new List<string>(GameObject.Find("GameManager").GetComponent<SpellingBeeManager>().answers);
             Debug.Log("Filter: " + filter.Count);
             recognizer.outputFilters.Add(new FocusSublistFilter<string>(MakeLowercase(filter)));
             myLoger = new LogerFilter();
