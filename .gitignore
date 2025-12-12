@@ -103,3 +103,6 @@ InitTestScene*.unity*
 
 #HomularMediaPipe
 /[Pp]ackages/com.github.homuler.mediapipe
+
+#MacArthurBates
+/[Aa]ssets/StreamingAssets/MacarthurBates

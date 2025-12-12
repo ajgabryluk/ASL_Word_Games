@@ -150,7 +150,7 @@ namespace Engine {
             recognizer.outputFilters.Add(new FocusSublistFilter<string>(MakeLowercase(filter)));
             myLoger = new LogerFilter();
             recognizer.outputFilters.Add(myLoger);
-            //recognizer.outputFilters.Add(new Thresholder<string>(0.8f));      
+            recognizer.outputFilters.Add(new Thresholder<string>(0.8f));      
         }
 
         public void UpdateFilters(List<string> focusedList) {

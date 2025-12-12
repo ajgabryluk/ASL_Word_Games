@@ -4,6 +4,7 @@ using UnityEngine;
 public class LetterButtons : MonoBehaviour
 {
     public TMP_Text letter;
+    public TextInput textInput;
 
     public void SetLetter(string letter)
     {
@@ -12,6 +13,6 @@ public class LetterButtons : MonoBehaviour
 
     public void TypeLetter()
     {
-        Debug.Log("Typed letter: " + letter.text);
+        textInput.AddLetter(letter.text);
     }
 }

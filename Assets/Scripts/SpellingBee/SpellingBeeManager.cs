@@ -14,6 +14,7 @@ public class SpellingBeeManager: MonoBehaviour
     public List<string> fullList;
     public List<string> answers;
     public List<string> letters;
+    public GameObject answerBoxPrefab;
 
     void Start()
     {
@@ -24,6 +25,13 @@ public class SpellingBeeManager: MonoBehaviour
         for(int i = 0; i < letters.Count; i++)
         {
             letterButtons[i].GetComponent<LetterButtons>().SetLetter(letters[i]);
+        }
+
+        foreach(string answer in answers)
+        {
+            GameObject answerBox = Instantiate(answerBoxPrefab, GameObject.Find("Answers").transform);
+            answerBox.transform.name = answer;
+            answerBox.GetComponent<AnswerBox>().SetAnswer(answer);
         }
 
         GameObject.Find("SimpleSLREngine(NoCanvas)").GetComponent<SimpleExecutionEngine>().enabled = true;
@@ -71,7 +79,7 @@ public class SpellingBeeManager: MonoBehaviour
             }
 
             // 3. Check if enough words can be formed
-            if (CheckLetterCombinations(temp) >= 8)
+            if (CheckLetterCombinations(temp) >= 6)
                 break; // success
             else
                 answers.Clear(); // retry
