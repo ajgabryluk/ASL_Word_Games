@@ -41,13 +41,18 @@ public class CheckSpellngBee : MonoBehaviour
         {
             Debug.Log("Filtered Result: " + result);
             GameObject.Find(result).GetComponent<AnswerBox>().ShowAnswer();
-            RectTransform panel = transform.parent.GetComponent<RectTransform>();
-            panel.anchoredPosition = new Vector2(panel.anchoredPosition.x + 346, 0);
+            ResetPosition();
         }
         else
         {
             Debug.Log("Sign failed please try again");
         }
+    }
+
+    public void ResetPosition()
+    {
+        RectTransform panel = transform.parent.GetComponent<RectTransform>();
+        panel.anchoredPosition = new Vector2(panel.anchoredPosition.x + 346, 0);
     }
 
     public static List<string> GetTopHalfMappings(List<string> mappings, List<float> probabilities)

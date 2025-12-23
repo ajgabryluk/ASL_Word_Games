@@ -37,25 +37,24 @@ public class CheckWordle : MonoBehaviour
             engine.recognizer.outputFilters.Clear();
             engine.UpdateFilters(wordleManager.words);
             Debug.Log("Filtered Result: " + result);
+            for(int i = 0; i < result.Length; i++)
+            {
+                if(result[i] == wordleManager.answer[i])
+                {
+                    wordleManager.rows[wordleManager.currentRow].boxes[i].MarkCorrect(result[i]);
+                }
+                else if(wordleManager.answer.Contains(result[i]))
+                {
+                    wordleManager.rows[wordleManager.currentRow].boxes[i].MarkIncorrectPosition(result[i]);
+                }
+                else
+                {
+                    wordleManager.rows[wordleManager.currentRow].boxes[i].MarkIncorrect(result[i]);
+                }
+            }
+            wordleManager.currentRow++;
+            ResetPosition();
         }
-        // for(int i = 0; i < result.Length; i++)
-        // {
-        //     if(result[i] == wordleManager.answer[i])
-        //     {
-        //         wordleManager.rows[wordleManager.currentRow].boxes[i].MarkCorrect(result[i]);
-        //     }
-        //     else if(wordleManager.answer.Contains(result[i]))
-        //     {
-        //         wordleManager.rows[wordleManager.currentRow].boxes[i].MarkIncorrectPosition(result[i]);
-        //     }
-        //     else
-        //     {
-        //         wordleManager.rows[wordleManager.currentRow].boxes[i].MarkIncorrect(result[i]);
-        //     }
-        // }
-        // wordleManager.currentRow++;
-        // RectTransform panel = transform.parent.GetComponent<RectTransform>();
-        // panel.anchoredPosition = new Vector2(panel.anchoredPosition.x + 346, 0);
     }
 
     public static List<string> GetTopHalfMappings(List<string> mappings, List<float> probabilities)
@@ -78,6 +77,11 @@ public class CheckWordle : MonoBehaviour
             result.Add(paired[i].mapping);
 
         return result;
+    }
+    public void ResetPosition()
+    {
+        RectTransform panel = transform.parent.GetComponent<RectTransform>();
+        panel.anchoredPosition = new Vector2(panel.anchoredPosition.x + 346, 0);
     }
 }
 
