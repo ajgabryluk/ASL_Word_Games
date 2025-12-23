@@ -31,7 +31,7 @@ public class CrossWordBox : MonoBehaviour
     
     public void HighlightBox()
     {
-        backgroundImage.color = Color.cyan;
+        backgroundImage.color = new Color(0.663f, 0.953f, 0f, 1f);
     }
     public void ChangeDirection(CrosswordGenerator.Direction dir)
     {
