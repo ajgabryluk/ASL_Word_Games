@@ -3169,7 +3169,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1786498355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2123430915}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1786498355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4258,6 +4270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2123430913}
   - component: {fileID: 2123430914}
+  - component: {fileID: 2123430915}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4292,7 +4305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9653632a4bb0a3c49ad5b75420bdec06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordList: spellingBeeList.txt
+  wordList: spellingBeeList
   letterButtons:
   - {fileID: 1367329041}
   - {fileID: 968509864}
@@ -4305,6 +4318,19 @@ MonoBehaviour:
   answers: []
   letters: []
   answerBoxPrefab: {fileID: 8027112885132978409, guid: 7113994655762b949bd82ef69697531b, type: 3}
+--- !u!114 &2123430915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123430911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e71fa184a81554998a8ccfb1ed3459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menus: []
 --- !u!1001 &3057460186035441024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4404,6 +4430,10 @@ PrefabInstance:
     - target: {fileID: 8319866817217118185, guid: 94a601644da59ac4fa764af050b77233, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687720776634545076, guid: 94a601644da59ac4fa764af050b77233, type: 3}
+      propertyPath: signListFile
+      value: spellingBeeList
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

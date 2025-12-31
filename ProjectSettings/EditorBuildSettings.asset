@@ -6,7 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 59147ef2e5fff9147a88b67366fde52f
+  - enabled: 1
     path: Assets/Scenes/CrosswordPuzzle.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/SpellingBee.unity
+    guid: b420bc054d56b354fabca799cd4995c1
+  - enabled: 1
+    path: Assets/Scenes/Wordle.unity
+    guid: e7fc5531adb5c694aaea0f4ea9659389
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

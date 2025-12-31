@@ -1891,7 +1891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8687720776634545076, guid: 94a601644da59ac4fa764af050b77233, type: 3}
       propertyPath: signListFile
-      value: signsList.txt
+      value: signsList
       objectReference: {fileID: 0}
     - target: {fileID: 8687720776634545076, guid: 94a601644da59ac4fa764af050b77233, type: 3}
       propertyPath: headerColor.g
@@ -1997,6 +1997,7 @@ GameObject:
   - component: {fileID: 1021812583}
   - component: {fileID: 1021812582}
   - component: {fileID: 1021812581}
+  - component: {fileID: 1021812584}
   m_Layer: 5
   m_Name: Home
   m_TagString: Untagged
@@ -2067,7 +2068,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1021812582}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1021812584}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1021812582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2106,6 +2119,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021812579}
   m_CullTransparentMesh: 1
+--- !u!114 &1021812584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021812579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e71fa184a81554998a8ccfb1ed3459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menus: []
 --- !u!1 &1051930655
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,7 +2581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25.000015}
+  m_AnchoredPosition: {x: 0, y: -25}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1347052346

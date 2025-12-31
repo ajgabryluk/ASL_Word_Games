@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 using System;
+using System.Linq;
 using UnityEngine.UI;
 using Engine;
 
@@ -35,8 +34,7 @@ public class CrosswordGenerator : MonoBehaviour
 
     void Start()
     {
-        string path = Path.Combine(Application.streamingAssetsPath, "signsList.txt");
-        words = new List<string>(File.ReadAllLines(path));
+        LoadWordList();
 
         char[,] best = RepeatedGeneration(words, maxWords: maxWords, iterations: 100);
         best = ShrinkGrid(best);
@@ -623,7 +621,20 @@ public class CrosswordGenerator : MonoBehaviour
         }
     }
 
+    public void LoadWordList()
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>($"WordLists/signsList");
 
+        if (textAsset == null)
+        {
+            Debug.LogError("Word list not found!");
+            return;
+        }
+
+        words = textAsset.text
+            .Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
+    }
 }
 
 

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine.UI;
-using System;
+using System.Linq;
 using UnityEngine.Video;
 
 public class DictionaryController : MonoBehaviour
 {
     [Header("Settings")]
-    public string signListFile = "spellingBeeList.txt";
+    public string signListFile = "spellingBeeList";
     public string dictionaryTitle = "Dictionary";
     public Color headerColor = Color.black;
 
@@ -25,6 +25,7 @@ public class DictionaryController : MonoBehaviour
     public Image sliderFill;
     public Image turtle;
     public Image rabbit;
+    private List<string> fullList = new List<string>();
 
     void Start()
     {
@@ -33,8 +34,8 @@ public class DictionaryController : MonoBehaviour
         sliderFill.color = headerColor;
         rabbit.color = headerColor;
         turtle.color = headerColor;
-        string path = Path.Combine(Application.streamingAssetsPath, signListFile);
-        List<string> fullList = new List<string>(File.ReadAllLines(path));
+
+        LoadWordList();
 
         foreach (string sign in fullList)
         {
@@ -58,9 +59,11 @@ public class DictionaryController : MonoBehaviour
         videoTitle.gameObject.SetActive(true);
         videoTitle.text = sign;
         textInput.gameObject.SetActive(false);
-        videoPlayer.url = Application.streamingAssetsPath + $"/MacarthurBates/{sign}.mp4";
+        VideoClip clip = Resources.Load<VideoClip>($"MacarthurBates/{sign}");
+        videoPlayer.clip = clip;
         videoPlayer.Play();
     }
+
 
     public void ExitVideoPage()
     {
@@ -73,5 +76,20 @@ public class DictionaryController : MonoBehaviour
     public void SpeedControl(Slider slider)
     {
         videoPlayer.playbackSpeed = slider.value;
+    }
+
+    public void LoadWordList()
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>($"WordLists/{signListFile}");
+
+        if (textAsset == null)
+        {
+            Debug.LogError("Word list not found!");
+            return;
+        }
+
+        fullList = textAsset.text
+            .Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
     }
 }

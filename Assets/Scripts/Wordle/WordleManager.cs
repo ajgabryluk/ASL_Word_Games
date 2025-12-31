@@ -1,12 +1,15 @@
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.Networking;
+using System.Linq;
 using Engine;
 
 public class WordleManager: MonoBehaviour
 {
     [SerializeField] 
-    private string wordList = "wordleList.txt";
+    private string wordList = "wordleList";
     public List<string> words;
     public string answer = "";
     public List<WordleRow> rows = new List<WordleRow>();
@@ -14,8 +17,7 @@ public class WordleManager: MonoBehaviour
 
     void Start()
     {
-        string path = Path.Combine(Application.streamingAssetsPath, wordList);
-        words = new List<string>(File.ReadAllLines(path));
+        LoadWordList();
         Shuffle(words);
         answer = words[0];
 
@@ -30,5 +32,20 @@ public class WordleManager: MonoBehaviour
             int r = Random.Range(0, i + 1);
             (list[i], list[r]) = (list[r], list[i]);
         }
+    }
+    
+    public void LoadWordList()
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>($"WordLists/{wordList}");
+
+        if (textAsset == null)
+        {
+            Debug.LogError("Word list not found!");
+            return;
+        }
+
+        words = textAsset.text
+            .Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
     }
 }

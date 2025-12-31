@@ -36,6 +36,8 @@ public class CheckSpellngBee : MonoBehaviour
     public void CheckWord(string result)
     {
         int index = engine.myLoger.LastResult.mapping.IndexOf(textInput.text.text);
+        Debug.Log("Predicted Word: " + engine.myLoger.LastResult.mapping[index]);
+        Debug.Log("Index: " + index);
         
         if(engine.myLoger.LastResult.probabilities.ToList<float>()[index] > 0.3f)
         {

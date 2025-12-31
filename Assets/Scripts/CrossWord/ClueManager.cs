@@ -12,17 +12,28 @@ public class ClueManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        string path = Path.Combine(Application.streamingAssetsPath, "crossword_hints.csv");
-        clues = LoadCsvToDict(path);
+        clues = LoadCsvToDict("crossword_hints");
     }
 
-    private Dictionary<string, string> LoadCsvToDict(string path)
+    private Dictionary<string, string> LoadCsvToDict(string resourceName)
     {
         var dict = new Dictionary<string, string>();
 
-        foreach (string line in File.ReadAllLines(path))
+        TextAsset csvFile = Resources.Load<TextAsset>(resourceName);
+
+        if (csvFile == null)
         {
-            if (string.IsNullOrWhiteSpace(line)) continue;
+            Debug.LogError("CSV not found in Resources: " + resourceName);
+            return dict;
+        }
+
+        string[] lines = csvFile.text.Split(
+            new[] { '\n', '\r' },
+            System.StringSplitOptions.RemoveEmptyEntries
+        );
+
+        foreach (string line in lines)
+        {
             string[] cols = line.Split(',');
 
             if (cols.Length < 2) continue;

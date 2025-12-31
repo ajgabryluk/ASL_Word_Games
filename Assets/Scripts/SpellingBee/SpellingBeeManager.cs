@@ -2,12 +2,14 @@ using UnityEngine;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
 using Engine;
+using UnityEngine.Networking;
 
 public class SpellingBeeManager: MonoBehaviour
 {
     [SerializeField] 
-    private string wordList = "spellingBeeList.txt";
+    private string wordList = "spellingBeeList";
     private List<string> consonants = new List<string> { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z" };
     private List<string> vowels = new List<string> { "a", "e", "i", "o", "u" };
     public List<GameObject> letterButtons = new List<GameObject>();
@@ -18,8 +20,7 @@ public class SpellingBeeManager: MonoBehaviour
 
     void Start()
     {
-        string path = Path.Combine(Application.streamingAssetsPath, wordList);
-        fullList = new List<string>(File.ReadAllLines(path));
+        LoadWordList();
         GenerateLetters();
 
         for(int i = 0; i < letters.Count; i++)
@@ -215,5 +216,20 @@ public class SpellingBeeManager: MonoBehaviour
             int r = Random.Range(0, i + 1);
             (list[i], list[r]) = (list[r], list[i]);
         }
+    }
+
+    public void LoadWordList()
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>($"WordLists/{wordList}");
+
+        if (textAsset == null)
+        {
+            Debug.LogError("Word list not found!");
+            return;
+        }
+
+        fullList = textAsset.text
+            .Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
     }
 }
