@@ -71,6 +71,6 @@ public class CheckCrossWord : MonoBehaviour
     public void ResetPosition()
     {
         RectTransform panel = transform.parent.GetComponent<RectTransform>();
-        panel.anchoredPosition = new Vector2(panel.anchoredPosition.x + 346, 0);
+        panel.anchoredPosition = new Vector2(9999, 0);
     }
 }
