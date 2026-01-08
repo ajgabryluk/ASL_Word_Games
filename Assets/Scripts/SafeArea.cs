@@ -26,4 +26,16 @@ public class SafeArea : MonoBehaviour
         rect.anchorMin = min;
         rect.anchorMax = max;
     }
+
+    public void ChangeCameraBackground(string color)
+    {
+        UnityEngine.Camera.main.clearFlags = CameraClearFlags.SolidColor;
+        UnityEngine.Camera.main.backgroundColor = HexToColor(color);
+    }
+
+    Color HexToColor(string hex)
+    {
+        ColorUtility.TryParseHtmlString(hex, out var c);
+        return c;
+    }
 }

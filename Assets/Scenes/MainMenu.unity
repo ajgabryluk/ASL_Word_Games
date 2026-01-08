@@ -570,7 +570,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1613,6 +1613,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1787548868}
+        m_TargetAssemblyTypeName: SafeArea, Assembly-CSharp
+        m_MethodName: ChangeCameraBackground
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: '#FFFFFF'
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &759427394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2398,6 +2410,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1787548868}
+        m_TargetAssemblyTypeName: SafeArea, Assembly-CSharp
+        m_MethodName: ChangeCameraBackground
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: '#FFFFFF'
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1056234396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2553,6 +2577,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1787548868}
+        m_TargetAssemblyTypeName: SafeArea, Assembly-CSharp
+        m_MethodName: ChangeCameraBackground
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: '#FFFFFF'
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1111168778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2706,6 +2742,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1787548868}
+        m_TargetAssemblyTypeName: SafeArea, Assembly-CSharp
+        m_MethodName: ChangeCameraBackground
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: '#008EF3'
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1122788464
@@ -5146,8 +5194,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -163.2}
-  m_SizeDelta: {x: 0, y: -326.4}
+  m_AnchoredPosition: {x: 0, y: -181.64}
+  m_SizeDelta: {x: 0, y: -363.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1137474472629056205
 MonoBehaviour:
@@ -5257,10 +5305,10 @@ RectTransform:
   - {fileID: 1671555048216120183}
   m_Father: {fileID: 8319866816874986363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.10599, y: -163.2}
-  m_SizeDelta: {x: 1080.7, y: 1418.7}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -181.64003}
+  m_SizeDelta: {x: 0, y: -363.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2163589559840436073
 GameObject:
@@ -5812,7 +5860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.21691895, y: 0}
+  m_AnchoredPosition: {x: 0.21679688, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5212275642471891434
@@ -6667,7 +6715,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 1040, y: 150}
+  m_CellSize: {x: 900, y: 150}
   m_Spacing: {x: 0, y: 10}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -6765,10 +6813,10 @@ RectTransform:
   - {fileID: 1937531597640602383}
   m_Father: {fileID: 1787548865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000046677, y: 144.92}
-  m_SizeDelta: {x: 1080.5, y: 1745.1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 116.3501}
+  m_SizeDelta: {x: 0, y: -231.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8479892501520717435
 MonoBehaviour:
@@ -6868,10 +6916,10 @@ RectTransform:
   - {fileID: 1758561730874835477}
   m_Father: {fileID: 8319866816874986363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.21691895, y: 709.35}
-  m_SizeDelta: {x: 0, y: 326.4}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -181.64001}
+  m_SizeDelta: {x: 0, y: 363.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8814450349162499342
 GameObject:
