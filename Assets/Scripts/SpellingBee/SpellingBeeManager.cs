@@ -17,6 +17,7 @@ public class SpellingBeeManager: MonoBehaviour
     public List<string> answers;
     public List<string> letters;
     public GameObject answerBoxPrefab;
+    public GameObject answerDisplay;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class SpellingBeeManager: MonoBehaviour
 
         foreach(string answer in answers)
         {
-            GameObject answerBox = Instantiate(answerBoxPrefab, GameObject.Find("Answers").transform);
+            GameObject answerBox = Instantiate(answerBoxPrefab, answerDisplay.transform);
             answerBox.transform.name = answer;
             answerBox.GetComponent<AnswerBox>().SetAnswer(answer);
         }

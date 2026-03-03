@@ -12,4 +12,8 @@ public class TextInput : MonoBehaviour
     public void DeleteLetter() {
         text.text = text.text.Substring(0, text.text.Length - 1);
     }
+
+    public void ClearWord() {
+        text.text = "";
+    }
 }
