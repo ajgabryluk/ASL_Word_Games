@@ -8,20 +8,27 @@ using UnityEngine.Networking;
 
 public class SpellingBeeManager: MonoBehaviour
 {
-    [SerializeField] 
-    private string wordList = "spellingBeeList";
+    [Header("Word Settings")]
+    [SerializeField] private string wordList = "spellingBeeList";
     private List<string> consonants = new List<string> { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z" };
     private List<string> vowels = new List<string> { "a", "e", "i", "o", "u" };
+
+    [Header("UI References")]
     public List<GameObject> letterButtons = new List<GameObject>();
+    [SerializeField] private TextInput textInput;
+    public GameObject answerBoxPrefab;
+
+    [Header("New Layout References")]
+    [SerializeField] private GameObject horizontalWordsContainer;   // The one with the Pivot X: 1 and Mask
+    [SerializeField] private GameObject verticalContentContainer;   // The Content of your Dropdown Scroll View
+    [SerializeField] private GameObject dropdownMenuObject;         // The Scroll View itself
+
+    [Header("Word Data")]
     public List<string> fullList;
     public List<string> answers;
     public List<string> answeredAlready;
     public List<string> letters;
-    public GameObject answerBoxPrefab;
-    public GameObject answerDisplay;
-
-    [SerializeField] 
-    private TextInput textInput;
+    
 
     void Start()
     {
@@ -33,8 +40,12 @@ public class SpellingBeeManager: MonoBehaviour
             letterButtons[i].GetComponent<LetterButtons>().SetLetter(letters[i]);
         }
 
+        //start recognizer elements
         GameObject.Find("SimpleSLREngine(NoCanvas)").GetComponent<SimpleExecutionEngine>().enabled = true;
         GameObject.Find("Sign Button").GetComponent<CheckSpellngBee>().enabled = true;
+
+        //ensure dropdown is closed
+        if(dropdownMenuObject != null) dropdownMenuObject.SetActive(false);
     }
 
     public void SubmitWord()
@@ -61,18 +72,40 @@ public class SpellingBeeManager: MonoBehaviour
 
     public void MarkWordAsFound(string word)
     {
-        // create answer box when user finds word
-        GameObject answerBox = Instantiate(answerBoxPrefab, answerDisplay.transform);
-        answerBox.transform.name = word;
+        // add to horizotnal display
+        GameObject horizBox = Instantiate(answerBoxPrefab, horizontalWordsContainer.transform);
+
+        // set as first sibling so newest word appears first
+        horizBox.transform.SetAsFirstSibling(); 
+        SetupBox(horizBox, word);
+
+        // add to vertical dropdown list as well
+        GameObject vertBox = Instantiate(answerBoxPrefab, verticalContentContainer.transform);
         
-        AnswerBox script = answerBox.GetComponent<AnswerBox>();
-        script.SetAnswer(word);
-        //make answer visible
-        script.ShowAnswer(); 
-        
-        //add found word to list 
+        // set as first sibling so newest word appears at top 
+        vertBox.transform.SetAsFirstSibling();
+        SetupBox(vertBox, word);
+
+        //update lists
         answers.Remove(word);
         answeredAlready.Add(word);
+    }
+
+    public void ToggleDropdown()
+    {
+        //if dropdown exists, then either open or close it
+        if (dropdownMenuObject != null)
+        {
+            dropdownMenuObject.SetActive(!dropdownMenuObject.activeSelf);
+        }
+    }
+
+    private void SetupBox(GameObject go, string word)
+    {
+        go.transform.name = word;
+        AnswerBox script = go.GetComponent<AnswerBox>();
+        script.SetAnswer(word);
+        script.ShowAnswer();
     }
 
     private void GenerateLetters()
