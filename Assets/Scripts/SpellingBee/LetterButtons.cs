@@ -14,5 +14,6 @@ public class LetterButtons : MonoBehaviour
     public void TypeLetter()
     {
         textInput.AddLetter(letter.text);
+        Debug.Log(letter.text);
     }
 }

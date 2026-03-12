@@ -19,9 +19,10 @@ public class CheckSpellngBee : MonoBehaviour
 
     public void CheckValidWord()
     {
+        //depreciated
         if(!spellingBeeManager.answers.Contains(textInput.text.text))
         {
-            Debug.Log("Not a valid word");
+            Debug.Log("Not a valid word or already found");
         }
         else
         {
@@ -31,18 +32,32 @@ public class CheckSpellngBee : MonoBehaviour
 
     public void TriggerRecognizer()
     {
-        engine.buffer.TriggerCallbacks();
+        //engine.buffer.TriggerCallbacks(); ONLY DIABLED FOR TESTING
+
+        string[] items = { "testword", spellingBeeManager.answers[0] };
+        int index = UnityEngine.Random.Range(0, items.Length);
+        string mockSign = items[index];
+
+        if (textInput != null)
+        {
+            textInput.ClearWord();
+            textInput.AddLetter(mockSign);
+            Debug.Log("Mock sign detected: " + mockSign);
+        }
     }
+
     public void CheckWord(string result)
     {
         int index = engine.myLoger.LastResult.mapping.IndexOf(textInput.text.text);
+
         Debug.Log("Predicted Word: " + engine.myLoger.LastResult.mapping[index]);
         Debug.Log("Index: " + index);
         
         if(engine.myLoger.LastResult.probabilities.ToList<float>()[index] > 0.3f)
         {
             Debug.Log("Filtered Result: " + result);
-            GameObject.Find(result).GetComponent<AnswerBox>().ShowAnswer();
+            //GameObject.Find(result).GetComponent<AnswerBox>().ShowAnswer();
+            spellingBeeManager.MarkWordAsFound(result);
             ResetPosition();
         }
         else

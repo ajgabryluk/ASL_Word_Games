@@ -15,9 +15,13 @@ public class SpellingBeeManager: MonoBehaviour
     public List<GameObject> letterButtons = new List<GameObject>();
     public List<string> fullList;
     public List<string> answers;
+    public List<string> answeredAlready;
     public List<string> letters;
     public GameObject answerBoxPrefab;
     public GameObject answerDisplay;
+
+    [SerializeField] 
+    private TextInput textInput;
 
     void Start()
     {
@@ -29,15 +33,46 @@ public class SpellingBeeManager: MonoBehaviour
             letterButtons[i].GetComponent<LetterButtons>().SetLetter(letters[i]);
         }
 
-        foreach(string answer in answers)
-        {
-            GameObject answerBox = Instantiate(answerBoxPrefab, answerDisplay.transform);
-            answerBox.transform.name = answer;
-            answerBox.GetComponent<AnswerBox>().SetAnswer(answer);
-        }
-
         GameObject.Find("SimpleSLREngine(NoCanvas)").GetComponent<SimpleExecutionEngine>().enabled = true;
         GameObject.Find("HoldToSign").GetComponent<CheckSpellngBee>().enabled = true;
+    }
+
+    public void SubmitWord()
+    {
+        string submittedWord = textInput.text.text.ToLower().Trim();
+
+        if (string.IsNullOrEmpty(submittedWord)) return;
+
+        //check if word is in answer list
+        if (answers.Contains(submittedWord))
+        {
+            Debug.Log("Correct! Adding to found list: " + submittedWord);
+
+            MarkWordAsFound(submittedWord);
+            textInput.ClearWord();
+        } 
+        else
+        {
+            Debug.LogError("Invalid Word: " + submittedWord);
+            textInput.ClearWord();
+            //UI would also go here to show error
+        }
+    }
+
+    public void MarkWordAsFound(string word)
+    {
+        // create answer box when user finds word
+        GameObject answerBox = Instantiate(answerBoxPrefab, answerDisplay.transform);
+        answerBox.transform.name = word;
+        
+        AnswerBox script = answerBox.GetComponent<AnswerBox>();
+        script.SetAnswer(word);
+        //make answer visible
+        script.ShowAnswer(); 
+        
+        //add found word to list 
+        answers.Remove(word);
+        answeredAlready.Add(word);
     }
 
     private void GenerateLetters()
