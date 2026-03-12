@@ -34,7 +34,7 @@ public class SpellingBeeManager: MonoBehaviour
         }
 
         GameObject.Find("SimpleSLREngine(NoCanvas)").GetComponent<SimpleExecutionEngine>().enabled = true;
-        GameObject.Find("HoldToSign").GetComponent<CheckSpellngBee>().enabled = true;
+        GameObject.Find("Sign Button").GetComponent<CheckSpellngBee>().enabled = true;
     }
 
     public void SubmitWord()
