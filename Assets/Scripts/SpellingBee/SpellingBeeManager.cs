@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Engine;
 using UnityEngine.Networking;
+using TMPro;
 
 public class SpellingBeeManager: MonoBehaviour
 {
@@ -22,18 +23,29 @@ public class SpellingBeeManager: MonoBehaviour
     [SerializeField] private GameObject horizontalWordsContainer;   // The one with the Pivot X: 1 and Mask
     [SerializeField] private GameObject verticalContentContainer;   // The Content of your Dropdown Scroll View
     [SerializeField] private GameObject dropdownMenuObject;         // The Scroll View itself
+    [SerializeField] private TMP_Text dropdownText;                 // Text stating the # of words found
 
     [Header("Word Data")]
     public List<string> fullList;
     public List<string> answers;
     public List<string> answeredAlready;
+    public int answerCount;
     public List<string> letters;
+    public int points;
+    public int maxPoints;
+
+    [Header("Difficulty Settings")]
+    [Tooltip("Min words in the dictionary that must contain the center letter. Increase to lower difficulty.")]
+    public int centerLetterMinFrequency = 1000; 
+    [Tooltip("Min number of playable words the puzzle must generate.")]
+    public int minPlayableWords = 15;
     
 
     void Start()
     {
         LoadWordList();
         GenerateLetters();
+
 
         for(int i = 0; i < letters.Count; i++)
         {
@@ -46,11 +58,17 @@ public class SpellingBeeManager: MonoBehaviour
 
         //ensure dropdown is closed
         if(dropdownMenuObject != null) dropdownMenuObject.SetActive(false);
+
+        //set dropdown text
+        UpdateDropdownText();
+
+        maxPoints = calculateMaxPoints();
+        Debug.Log("There are " + answers.Count + " words including: " + string.Join(", ", answers) + " for a total of " + maxPoints + " max points!");
     }
 
     public void SubmitWord()
     {
-        string submittedWord = textInput.text.text.ToLower().Trim();
+        string submittedWord = textInput.GetCleanWord().ToLower().Trim();
 
         if (string.IsNullOrEmpty(submittedWord)) return;
 
@@ -86,9 +104,80 @@ public class SpellingBeeManager: MonoBehaviour
         vertBox.transform.SetAsFirstSibling();
         SetupBox(vertBox, word);
 
+        //calculate points
+        points += calculatePoints(word);
+        //Debug.Log(points);
+        
         //update lists
         answers.Remove(word);
         answeredAlready.Add(word);
+        answerCount++;
+        UpdateDropdownText();
+    }
+
+    public int calculatePoints(string word)
+    {
+        int calculatedPoints = 0;
+        
+        // base length points
+        if (word.Length == 4)
+        {
+            calculatedPoints = 1;
+        } 
+        else if (word.Length > 4)
+        {
+            calculatedPoints = word.Length;
+        }
+        else
+        {
+            Debug.LogError("Word too short for points.");
+            return 0;
+        }
+
+        //pangram bonus check
+        if (isPangram(word))
+        {
+            calculatedPoints += 7;
+        }
+
+        //return points
+        return calculatedPoints;
+    }
+
+    private int calculateMaxPoints()
+    {
+        int totalCount = 0;
+        foreach (string answer in answers)
+        {
+            totalCount += calculatePoints(answer);
+        }
+        
+        return totalCount;
+    }
+
+    private bool isPangram(string word)
+    {
+        // go through each letter in letters list and check is word contains them
+        foreach (string letter in letters)
+        {
+            if (!word.Contains(letter)) 
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void UpdateDropdownText()
+    {
+        if (answerCount == 1)
+        {
+            dropdownText.text = "You have found " + answerCount + " word";
+        } 
+        else
+        {
+            dropdownText.text = "You have found " + answerCount + " words";
+        }
     }
 
     public void ToggleDropdown()
@@ -110,12 +199,17 @@ public class SpellingBeeManager: MonoBehaviour
 
     private void GenerateLetters()
     {
+        int attempts = 0;
+        int maxAttempts = 100;
+        
         string centerLetter;
-        List<string> temp;
+        List<string> temp = new List<string>();
         bool pickConsonant = Random.Range(0, 2) == 0;
 
-        while (true) // repeat until a valid letter set is found
+        while (attempts < maxAttempts) // repeat until a valid letter set is found or failure
         {
+            attempts++;
+
             // 1. Shuffle arrays to ensure randomness
             Shuffle(consonants);
             Shuffle(vowels);
@@ -127,7 +221,7 @@ public class SpellingBeeManager: MonoBehaviour
 
             // Clear previous answers and check center letter
             answers.Clear();
-            if (CheckCenterLetter(centerLetter) < 67)
+            if (CheckCenterLetter(centerLetter) < centerLetterMinFrequency)
                 continue; // invalid center, try again
 
             // 2. Build letter set
@@ -149,13 +243,16 @@ public class SpellingBeeManager: MonoBehaviour
             }
 
             // 3. Check if enough words can be formed
-            if (CheckLetterCombinations(temp) >= 6)
-                break; // success
-            else
-                answers.Clear(); // retry
+            if (CheckLetterCombinations(temp) >= minPlayableWords)
+            {
+                letters = temp;
+                return; // Success!
+            }
         }
 
         letters = temp;
+
+        Debug.LogError("Could not find a valid puzzle after 100 tries. Lower your minPlayableWords!");
     }
 
     private void AddRandomLetters(List<string> target, List<string> source, int total)
@@ -173,16 +270,9 @@ public class SpellingBeeManager: MonoBehaviour
 
     private int CheckCenterLetter(string letter)
     {
-        int count = 0;
-        foreach(string word in fullList)
-        {
-            if(word.Contains(letter))
-            {
-                count++;
-                answers.Add(word);
-            }
-        }
-        return count;
+        char c = letter[0];
+        answers = new List<string>(wordsByLetter[c]);
+        return answers.Count;
     }
 
     private int CheckLetterCombinations(List<string> letters)
@@ -287,6 +377,8 @@ public class SpellingBeeManager: MonoBehaviour
         }
     }
 
+    private Dictionary<char, List<string>> wordsByLetter = new Dictionary<char, List<string>>(); //create dictionaries based on starting letter
+
     public void LoadWordList()
     {
         TextAsset textAsset = Resources.Load<TextAsset>($"WordLists/{wordList}");
@@ -300,5 +392,48 @@ public class SpellingBeeManager: MonoBehaviour
         fullList = textAsset.text
             .Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries)
             .ToList();
+
+        //pre sorting
+        wordsByLetter.Clear();
+        for (char c = 'a'; c <= 'z'; c++) wordsByLetter[c] = new List<string>();
+
+        foreach (string word in fullList)
+        {
+            // add word to the list for every unique letter it contains
+            var uniqueChars = word.Distinct();
+            foreach (char c in uniqueChars)
+            {
+                if (wordsByLetter.ContainsKey(c))
+                    wordsByLetter[c].Add(word);
+            }
+        }
+    }
+
+    public void ShuffleExistingLetters()
+    {
+        if (letters == null || letters.Count < 7) return;
+
+        //seperate center letter
+        string centerLetter = letters[0];
+        List<string> otherLetters = letters.GetRange(1, letters.Count - 1);
+        
+        //shuffle other letters
+        Shuffle(otherLetters);
+
+        //reconstruct letter list 
+        letters.Clear();
+        letters.Add(centerLetter);
+        letters.AddRange(otherLetters);
+
+        //update UI
+        for (int i = 0; i < letters.Count; i++)
+        {
+            if (i < letterButtons.Count)
+            {
+                letterButtons[i].GetComponent<LetterButtons>().SetLetter(letters[i]);
+            }
+        }
+        
+        Debug.Log("Letters Shuffled!");
     }
 }
