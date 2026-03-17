@@ -18,6 +18,7 @@ public class SpellingBeeManager: MonoBehaviour
     public List<GameObject> letterButtons = new List<GameObject>();
     [SerializeField] private TextInput textInput;
     public GameObject answerBoxPrefab;
+    public GameObject placeHolderText;
 
     [Header("New Layout References")]
     [SerializeField] private GameObject horizontalWordsContainer;   // The one with the Pivot X: 1 and Mask
@@ -62,6 +63,7 @@ public class SpellingBeeManager: MonoBehaviour
         //set dropdown text
         UpdateDropdownText();
 
+        //calculate max points
         maxPoints = calculateMaxPoints();
         Debug.Log("There are " + answers.Count + " words including: " + string.Join(", ", answers) + " for a total of " + maxPoints + " max points!");
     }
@@ -90,6 +92,8 @@ public class SpellingBeeManager: MonoBehaviour
 
     public void MarkWordAsFound(string word)
     {
+        placeHolderText.SetActive(false);
+        
         // add to horizotnal display
         GameObject horizBox = Instantiate(answerBoxPrefab, horizontalWordsContainer.transform);
 

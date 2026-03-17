@@ -28,6 +28,23 @@ public class OnboardingController : MonoBehaviour
         }
     }
 
+    public void LastPage()
+    {
+        currentIndex--;
+        Debug.Log(currentIndex);
+
+        if (currentIndex > -1)
+        {
+            ShowPage(currentIndex);
+        }
+        else
+        {
+            // Onboarding finished. Close the UI or load the game
+            gameObject.SetActive(false); 
+            Debug.Log("On first page");
+        }
+    }
+
     private void ShowPage(int index)
     {
         for (int i = 0; i < pages.Count; i++)

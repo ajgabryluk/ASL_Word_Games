@@ -1,97 +1,82 @@
 fileFormatVersion: 2
-guid: 77a42dd4da21da84b82dd91cdb76af9f
+guid: c244776db5f498c4381b78021c20587e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7201525267301309370
-    second: progress_0
+      213: -6957401091593950687
+    second: progress-2_0
   - first:
-      213: 8373215148646833053
-    second: progress_1
+      213: 3519947289544179162
+    second: progress-2_1
   - first:
-      213: -3468368421259279120
-    second: progress_2
+      213: 2537743263590488326
+    second: progress-2_2
   - first:
-      213: 6092721219304346072
-    second: progress_3
+      213: -8439246680549037299
+    second: progress-2_3
   - first:
-      213: -4534324476950098652
-    second: progress_4
+      213: -5173704900754867208
+    second: progress-2_4
   - first:
-      213: 3778851008599690078
-    second: progress_5
+      213: -322476114823138780
+    second: progress-2_5
   - first:
-      213: 2622225228492320209
-    second: progress_6
+      213: 1327139957771143645
+    second: progress-2_6
   - first:
-      213: -4904857458247521129
-    second: progress_7
+      213: -6557130749690075297
+    second: progress-2_7
   - first:
-      213: 2539079771755620977
-    second: progress_8
+      213: 7635902174263634359
+    second: progress-2_8
   - first:
-      213: 313034241401180086
-    second: progress_9
+      213: 4124156471994746950
+    second: progress-2_9
   - first:
-      213: 8399666085046343541
-    second: progress_10
+      213: -8284831596488655585
+    second: progress-2_10
   - first:
-      213: -1314329137878914938
-    second: progress_11
+      213: 8896754394366209171
+    second: progress-2_11
   - first:
-      213: -7366919323668152391
-    second: progress_12
+      213: -5046102635626759069
+    second: progress-2_12
   - first:
-      213: -3319699591096628259
-    second: progress_13
+      213: 3969270205615271161
+    second: progress-2_13
   - first:
-      213: 5159679281354590623
-    second: progress_14
+      213: -8139401956722435356
+    second: progress-2_14
   - first:
-      213: -7571492640180127514
-    second: progress_15
+      213: 765255918150695216
+    second: progress-2_15
   - first:
-      213: 8406245469686948536
-    second: progress_16
+      213: -5386035855334035248
+    second: progress-2_16
   - first:
-      213: -6938693957500751157
-    second: progress_17
+      213: -1945605382984227645
+    second: progress-2_17
   - first:
-      213: -4949126944702352190
-    second: progress_18
+      213: -2587372539880496439
+    second: progress-2_18
   - first:
-      213: -4117370832791659735
-    second: progress_19
+      213: -7306804906996083468
+    second: progress-2_19
   - first:
-      213: 9003679893167017640
-    second: progress_20
+      213: -6341566725156428652
+    second: progress-2_20
   - first:
-      213: -2699774135247944634
-    second: progress_21
+      213: 8702834884822075363
+    second: progress-2_21
   - first:
-      213: 999918327315501695
-    second: progress_22
+      213: 1189657652581465444
+    second: progress-2_22
   - first:
-      213: -2328409266193831965
-    second: progress_23
+      213: -5864393717112607661
+    second: progress-2_23
   - first:
-      213: 593797867432692103
-    second: progress_24
-  - first:
-      213: -2834829699024584104
-    second: progress_25
-  - first:
-      213: -8984743875356801285
-    second: progress_26
-  - first:
-      213: -1145298058951542919
-    second: progress_27
-  - first:
-      213: 8693281167264045864
-    second: progress_28
-  - first:
-      213: -4668208358088036131
-    second: progress_29
+      213: 7283437297198461454
+    second: progress-2_24
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -187,7 +172,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: progress_0
+      name: progress-2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -202,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: abb9e764315f0f360800000000000000
-      internalID: 7201525267301309370
+      spriteID: 12aa0afa198527f90800000000000000
+      internalID: -6957401091593950687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_1
+      name: progress-2_1
       rect:
         serializedVersion: 2
         x: 2
@@ -224,14 +209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d9b930380d2a33470800000000000000
-      internalID: 8373215148646833053
+      spriteID: add316d096d59d030800000000000000
+      internalID: 3519947289544179162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_2
+      name: progress-2_2
       rect:
         serializedVersion: 2
         x: 1352
@@ -246,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0f488ac0c41eddfc0800000000000000
-      internalID: -3468368421259279120
+      spriteID: 609937d7d00e73320800000000000000
+      internalID: 2537743263590488326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_3
+      name: progress-2_3
       rect:
         serializedVersion: 2
         x: 1354
@@ -268,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d1de181ba1bd8450800000000000000
-      internalID: 6092721219304346072
+      spriteID: d0beaf96bd5c1ea80800000000000000
+      internalID: -8439246680549037299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_4
+      name: progress-2_4
       rect:
         serializedVersion: 2
         x: 1
@@ -290,14 +275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42dc70f79e7d211c0800000000000000
-      internalID: -4534324476950098652
+      spriteID: 8fbfec1edce4338b0800000000000000
+      internalID: -5173704900754867208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_5
+      name: progress-2_5
       rect:
         serializedVersion: 2
         x: 1345
@@ -312,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e5b06ba98fc217430800000000000000
-      internalID: 3778851008599690078
+      spriteID: 4223b6f9ea5568bf0800000000000000
+      internalID: -322476114823138780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_6
+      name: progress-2_6
       rect:
         serializedVersion: 2
         x: 1353
@@ -334,14 +319,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1dd2a51c3f3046420800000000000000
-      internalID: 2622225228492320209
+      spriteID: dd90d2692c2fa6210800000000000000
+      internalID: 1327139957771143645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_7
+      name: progress-2_7
       rect:
         serializedVersion: 2
         x: 0
@@ -356,20 +341,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 79c2b37f0227eebb0800000000000000
-      internalID: -4904857458247521129
+      spriteID: f57aee603546005a0800000000000000
+      internalID: -6557130749690075297
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_8
+      name: progress-2_8
       rect:
         serializedVersion: 2
         x: 1349
-        y: 81
-        width: 9
-        height: 8
+        y: 50
+        width: 30
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -378,14 +363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 17aafdb899f9c3320800000000000000
-      internalID: 2539079771755620977
+      spriteID: 7b9ed9c129c28f960800000000000000
+      internalID: 7635902174263634359
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_9
+      name: progress-2_9
       rect:
         serializedVersion: 2
         x: 1350
@@ -400,19 +385,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6bf4049ebfe185400800000000000000
-      internalID: 313034241401180086
+      spriteID: 6480067e572fb3930800000000000000
+      internalID: 4124156471994746950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_10
+      name: progress-2_10
       rect:
         serializedVersion: 2
-        x: 1380
+        x: 1381
         y: 52
-        width: 28
+        width: 26
         height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -422,14 +407,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 577551f0dcb919470800000000000000
-      internalID: 8399666085046343541
+      spriteID: f1d7c53de8d560d80800000000000000
+      internalID: -8284831596488655585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_11
+      name: progress-2_11
       rect:
         serializedVersion: 2
         x: 1407
@@ -444,19 +429,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 68828cadc9092cde0800000000000000
-      internalID: -1314329137878914938
+      spriteID: 39ce7121cfe977b70800000000000000
+      internalID: 8896754394366209171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_12
+      name: progress-2_12
       rect:
         serializedVersion: 2
-        x: 1426
+        x: 1425
         y: 53
-        width: 29
+        width: 30
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -466,19 +451,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9bf7ccf18e173c990800000000000000
-      internalID: -7366919323668152391
+      spriteID: 36cfd476364a8f9b0800000000000000
+      internalID: -5046102635626759069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_13
+      name: progress-2_13
       rect:
         serializedVersion: 2
-        x: 1456
+        x: 1455
         y: 52
-        width: 27
+        width: 28
         height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -488,14 +473,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ddb0da77fce0ee1d0800000000000000
-      internalID: -3319699591096628259
+      spriteID: 9fc6d3fc83ea51730800000000000000
+      internalID: 3969270205615271161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_14
+      name: progress-2_14
       rect:
         serializedVersion: 2
         x: 0
@@ -510,14 +495,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f99451028fcda9740800000000000000
-      internalID: 5159679281354590623
+      spriteID: 4ea90757b090b0f80800000000000000
+      internalID: -8139401956722435356
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_15
+      name: progress-2_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 62
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03933abf33cbe9a00800000000000000
+      internalID: 765255918150695216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: progress-2_16
       rect:
         serializedVersion: 2
         x: 3
@@ -532,63 +539,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6e8349a2f87ace690800000000000000
-      internalID: -7571492640180127514
+      spriteID: 0d03c4f0de4f045b0800000000000000
+      internalID: -5386035855334035248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_16
-      rect:
-        serializedVersion: 2
-        x: 1351
-        y: 75
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b26d6b67bbf8a470800000000000000
-      internalID: 8406245469686948536
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: progress_17
-      rect:
-        serializedVersion: 2
-        x: 1353
-        y: 62
-        width: 7
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bc2b402cb9ec4bf90800000000000000
-      internalID: -6938693957500751157
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: progress_18
+      name: progress-2_17
       rect:
         serializedVersion: 2
         x: 1497
         y: 41
-        width: 28
+        width: 27
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -598,19 +561,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c4b3b0f34b215bb0800000000000000
-      internalID: -4949126944702352190
+      spriteID: 3c423226632dff4e0800000000000000
+      internalID: -1945605382984227645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_19
+      name: progress-2_18
       rect:
         serializedVersion: 2
-        x: 1525
+        x: 1524
         y: 52
-        width: 19
+        width: 20
         height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -620,17 +583,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 92b16e6da092cd6c0800000000000000
-      internalID: -4117370832791659735
+      spriteID: 9c2a2da226ec71cd0800000000000000
+      internalID: -2587372539880496439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_20
+      name: progress-2_19
       rect:
         serializedVersion: 2
-        x: 1545
+        x: 1544
         y: 52
         width: 20
         height: 27
@@ -642,102 +605,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8ae0c87c82f73fc70800000000000000
-      internalID: 9003679893167017640
+      spriteID: 4f4da6376a3099a90800000000000000
+      internalID: -7306804906996083468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_21
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 62
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 64442ce5ab9788ad0800000000000000
-      internalID: -2699774135247944634
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: progress_22
-      rect:
-        serializedVersion: 2
-        x: 1349
-        y: 57
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f721b00cb6c60ed00800000000000000
-      internalID: 999918327315501695
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: progress_23
-      rect:
-        serializedVersion: 2
-        x: 1354
-        y: 55
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e7e9ccdb14dfafd0800000000000000
-      internalID: -2328409266193831965
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: progress_24
-      rect:
-        serializedVersion: 2
-        x: 1354
-        y: 50
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 789c5bca3089d3800800000000000000
-      internalID: 593797867432692103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: progress_25
+      name: progress-2_20
       rect:
         serializedVersion: 2
         x: 3
@@ -752,14 +627,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 85289e68869a8a8d0800000000000000
-      internalID: -2834829699024584104
+      spriteID: 4942d9b99aa3ef7a0800000000000000
+      internalID: -6341566725156428652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_26
+      name: progress-2_21
       rect:
         serializedVersion: 2
         x: 1354
@@ -774,14 +649,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf6cd7f6c07cf4380800000000000000
-      internalID: -8984743875356801285
+      spriteID: 3e782b8d73ea6c870800000000000000
+      internalID: 8702834884822075363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_27
+      name: progress-2_22
       rect:
         serializedVersion: 2
         x: 0
@@ -796,14 +671,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 977bf32cb751b10f0800000000000000
-      internalID: -1145298058951542919
+      spriteID: 46d717af453828010800000000000000
+      internalID: 1189657652581465444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_28
+      name: progress-2_23
       rect:
         serializedVersion: 2
         x: 1350
@@ -818,14 +693,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82bdd53a92db4a870800000000000000
-      internalID: 8693281167264045864
+      spriteID: 35c68743cfc7d9ea0800000000000000
+      internalID: -5864393717112607661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: progress_29
+      name: progress-2_24
       rect:
         serializedVersion: 2
         x: 1350
@@ -840,8 +715,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd037a64b31373fb0800000000000000
-      internalID: -4668208358088036131
+      spriteID: e02785be1a7f31560800000000000000
+      internalID: 7283437297198461454
       vertices: []
       indices: 
       edges: []
@@ -860,36 +735,31 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      progress_0: 7201525267301309370
-      progress_1: 8373215148646833053
-      progress_10: 8399666085046343541
-      progress_11: -1314329137878914938
-      progress_12: -7366919323668152391
-      progress_13: -3319699591096628259
-      progress_14: 5159679281354590623
-      progress_15: -7571492640180127514
-      progress_16: 8406245469686948536
-      progress_17: -6938693957500751157
-      progress_18: -4949126944702352190
-      progress_19: -4117370832791659735
-      progress_2: -3468368421259279120
-      progress_20: 9003679893167017640
-      progress_21: -2699774135247944634
-      progress_22: 999918327315501695
-      progress_23: -2328409266193831965
-      progress_24: 593797867432692103
-      progress_25: -2834829699024584104
-      progress_26: -8984743875356801285
-      progress_27: -1145298058951542919
-      progress_28: 8693281167264045864
-      progress_29: -4668208358088036131
-      progress_3: 6092721219304346072
-      progress_4: -4534324476950098652
-      progress_5: 3778851008599690078
-      progress_6: 2622225228492320209
-      progress_7: -4904857458247521129
-      progress_8: 2539079771755620977
-      progress_9: 313034241401180086
+      progress-2_0: -6957401091593950687
+      progress-2_1: 3519947289544179162
+      progress-2_10: -8284831596488655585
+      progress-2_11: 8896754394366209171
+      progress-2_12: -5046102635626759069
+      progress-2_13: 3969270205615271161
+      progress-2_14: -8139401956722435356
+      progress-2_15: 765255918150695216
+      progress-2_16: -5386035855334035248
+      progress-2_17: -1945605382984227645
+      progress-2_18: -2587372539880496439
+      progress-2_19: -7306804906996083468
+      progress-2_2: 2537743263590488326
+      progress-2_20: -6341566725156428652
+      progress-2_21: 8702834884822075363
+      progress-2_22: 1189657652581465444
+      progress-2_23: -5864393717112607661
+      progress-2_24: 7283437297198461454
+      progress-2_3: -8439246680549037299
+      progress-2_4: -5173704900754867208
+      progress-2_5: -322476114823138780
+      progress-2_6: 1327139957771143645
+      progress-2_7: -6557130749690075297
+      progress-2_8: 7635902174263634359
+      progress-2_9: 4124156471994746950
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
