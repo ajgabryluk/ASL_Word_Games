@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -33,13 +34,19 @@ public class SpellingBeeManager: MonoBehaviour
     public int answerCount;
     public List<string> letters;
     public int points;
-    public int maxPoints;
+    public int maxPossiblePoints;
 
     [Header("Difficulty Settings")]
     [Tooltip("Min words in the dictionary that must contain the center letter. Increase to lower difficulty.")]
     public int centerLetterMinFrequency = 1000; 
     [Tooltip("Min number of playable words the puzzle must generate.")]
     public int minPlayableWords = 15;
+
+    [Header("Points")]
+    public Image fillImage; // gradient image
+    public TMP_Text progressText;
+    public GameObject[] stars; // array containing your 3 stars
+    public int maxPoints = 40;
     
 
     void Start()
@@ -63,9 +70,12 @@ public class SpellingBeeManager: MonoBehaviour
         //set dropdown text
         UpdateDropdownText();
 
+        //set progress bar text
+        progressText.text = "0/40";
+
         //calculate max points
-        maxPoints = calculateMaxPoints();
-        Debug.Log("There are " + answers.Count + " words including: " + string.Join(", ", answers) + " for a total of " + maxPoints + " max points!");
+        maxPossiblePoints = calculateMaxPossiblePoints();
+        Debug.Log("There are " + answers.Count + " words including: " + string.Join(", ", answers) + " for a total of " + maxPossiblePoints + " max points!");
     }
 
     public void SubmitWord()
@@ -109,7 +119,7 @@ public class SpellingBeeManager: MonoBehaviour
         SetupBox(vertBox, word);
 
         //calculate points
-        points += calculatePoints(word);
+        AddPoints(calculatePoints(word));
         //Debug.Log(points);
         
         //update lists
@@ -148,7 +158,7 @@ public class SpellingBeeManager: MonoBehaviour
         return calculatedPoints;
     }
 
-    private int calculateMaxPoints()
+    private int calculateMaxPossiblePoints()
     {
         int totalCount = 0;
         foreach (string answer in answers)
@@ -439,5 +449,25 @@ public class SpellingBeeManager: MonoBehaviour
         }
         
         Debug.Log("Letters Shuffled!");
+    }
+
+    public void AddPoints(int amount) {
+        points += amount;
+        UpdateProgressBar();
+    }
+
+    void UpdateProgressBar() {
+        float progress = (float)points / (float)maxPoints;
+        Debug.Log("progress is " + points + " / " + maxPoints + " = " + progress);
+        
+        float newWidth = progress * 759f;
+        fillImage.rectTransform.sizeDelta = new Vector3(newWidth, fillImage.rectTransform.sizeDelta.y);
+
+        progressText.text = points + "/" + maxPoints;
+
+        // Check for Tiers (Stars)
+        if (progress >= 0.33f) stars[0].SetActive(true);
+        if (progress >= 0.66f) stars[1].SetActive(true);
+        if (progress >= 1.00f) stars[2].SetActive(true);
     }
 }
