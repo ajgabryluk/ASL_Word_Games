@@ -457,17 +457,21 @@ public class SpellingBeeManager: MonoBehaviour
     }
 
     void UpdateProgressBar() {
+        
+        progressText.text = points + "/" + maxPoints;
+        
         float progress = (float)points / (float)maxPoints;
         Debug.Log("progress is " + points + " / " + maxPoints + " = " + progress);
-        
-        float newWidth = progress * 759f;
-        fillImage.rectTransform.sizeDelta = new Vector3(newWidth, fillImage.rectTransform.sizeDelta.y);
 
-        progressText.text = points + "/" + maxPoints;
-
-        // Check for Tiers (Stars)
-        if (progress >= 0.33f) stars[0].SetActive(true);
-        if (progress >= 0.66f) stars[1].SetActive(true);
-        if (progress >= 1.00f) stars[2].SetActive(true);
+        if (points <= maxPoints)
+        {
+            float newWidth = progress * 759f;
+            fillImage.rectTransform.sizeDelta = new Vector3(newWidth, fillImage.rectTransform.sizeDelta.y);
+            
+            // Check for Tiers (Stars)
+            if (progress >= 0.33f) stars[0].SetActive(true);
+            if (progress >= 0.66f) stars[1].SetActive(true);
+            if (progress >= 1.00f) stars[2].SetActive(true);
+        }
     }
 }

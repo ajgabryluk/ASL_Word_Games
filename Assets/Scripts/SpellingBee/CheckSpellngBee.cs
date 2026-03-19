@@ -34,12 +34,12 @@ public class CheckSpellngBee : MonoBehaviour
     {
         //engine.buffer.TriggerCallbacks(); ONLY DIABLED FOR TESTING
 
-        string[] items = { "testword", spellingBeeManager.answers[0] };
-        int index = UnityEngine.Random.Range(0, items.Length);
-        string mockSign = items[index];
+        int index = UnityEngine.Random.Range(0, spellingBeeManager.answers.Count);
+        string mockSign = spellingBeeManager.answers[index];
 
         if (textInput != null)
         {
+
             textInput.ClearWord();
             textInput.AddLetter(mockSign);
             Debug.Log("Mock sign detected: " + mockSign);
