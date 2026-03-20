@@ -47,35 +47,44 @@ public class SpellingBeeManager: MonoBehaviour
     public TMP_Text progressText;
     public GameObject[] stars; // array containing your 3 stars
     public int maxPoints = 40;
+
+    [Header("Levels")]
+    public LevelData data;
     
 
     void Start()
-    {
-        LoadWordList();
-        GenerateLetters();
-
-
-        for(int i = 0; i < letters.Count; i++)
+    {   
+        // setup Data
+        if (LevelDataBridge.isRandomMode)
         {
-            letterButtons[i].GetComponent<LetterButtons>().SetLetter(letters[i]);
+            LoadWordList();     // Only need the 177k list for random mode
+            GenerateLetters();  // Run your 100-attempt loop
+        }
+        else
+        {
+            // Use the "Suitcase" we packed in the Home Scene
+            InitializePresetLevel(LevelDataBridge.presetLetters, LevelDataBridge.presetWords);
         }
 
-        //start recognizer elements
+        // 2. Update the UI buttons with whatever letters we ended up with
+        for (int i = 0; i < letters.Count; i++)
+        {
+            if(i < letterButtons.Count)
+                letterButtons[i].GetComponent<LetterButtons>().SetLetter(letters[i]);
+        }
+
+        // 3. System Initialization
         GameObject.Find("SimpleSLREngine(NoCanvas)").GetComponent<SimpleExecutionEngine>().enabled = true;
         GameObject.Find("Sign Button").GetComponent<CheckSpellngBee>().enabled = true;
 
-        //ensure dropdown is closed
         if(dropdownMenuObject != null) dropdownMenuObject.SetActive(false);
-
-        //set dropdown text
         UpdateDropdownText();
 
-        //set progress bar text
-        progressText.text = "0/40";
-
-        //calculate max points
+        progressText.text = "0/" + maxPoints;
         maxPossiblePoints = calculateMaxPossiblePoints();
-        Debug.Log("There are " + answers.Count + " words including: " + string.Join(", ", answers) + " for a total of " + maxPossiblePoints + " max points!");
+        
+        string words = string.Join(", ", answers);
+        Debug.Log($"Level Loaded! {answers.Count} words found. Max points: {maxPossiblePoints}. Words: {words}");
     }
 
     public void SubmitWord()
@@ -474,4 +483,20 @@ public class SpellingBeeManager: MonoBehaviour
             if (progress >= 1.00f) stars[2].SetActive(true);
         }
     }
+
+
+    void InitializePresetLevel(string presetLetters, string[] presetWords)
+    {
+        // Convert string of letters into the List<string> the game uses
+        letters = new List<string>();
+        foreach (char c in presetLetters)
+        {
+            letters.Add(c.ToString().ToLower());
+        }
+
+        // Directly assign the answers from the ScriptableObject
+        answers = new List<string>(presetWords);
+    }
+
+
 }

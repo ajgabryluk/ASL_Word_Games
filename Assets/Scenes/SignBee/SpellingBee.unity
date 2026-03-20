@@ -1551,7 +1551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 13.175, y: -15}
+  m_AnchoredPosition: {x: 13.175003, y: -15}
   m_SizeDelta: {x: 26.35, y: 26.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400550196
@@ -4106,7 +4106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 13.175, y: -15}
+  m_AnchoredPosition: {x: 13.175003, y: -15}
   m_SizeDelta: {x: 26.35, y: 26.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &824620190
@@ -4390,7 +4390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 13.175, y: -15}
+  m_AnchoredPosition: {x: 13.175003, y: -15}
   m_SizeDelta: {x: 26.35, y: 26.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &880127415
@@ -4541,7 +4541,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 886233291}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2123430916}
+        m_TargetAssemblyTypeName: MySceneController, Assembly-CSharp
+        m_MethodName: GoToHome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &886233291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4787,8 +4799,8 @@ RectTransform:
   - {fileID: 1907833335}
   - {fileID: 1708086802}
   - {fileID: 799789241}
-  - {fileID: 1517609080}
   - {fileID: 289754373}
+  - {fileID: 1517609080}
   - {fileID: 126532409}
   - {fileID: 459027038}
   - {fileID: 761013450}
@@ -7172,7 +7184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 13.175, y: -15}
+  m_AnchoredPosition: {x: 13.175003, y: -15}
   m_SizeDelta: {x: 26.35, y: 26.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1640797021
@@ -8985,6 +8997,7 @@ GameObject:
   - component: {fileID: 2123430913}
   - component: {fileID: 2123430915}
   - component: {fileID: 2123430914}
+  - component: {fileID: 2123430916}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9043,7 +9056,7 @@ MonoBehaviour:
   points: 0
   maxPossiblePoints: 0
   centerLetterMinFrequency: 1000
-  minPlayableWords: 15
+  minPlayableWords: 20
   fillImage: {fileID: 480065065}
   progressText: {fileID: 1293672733}
   stars:
@@ -9051,6 +9064,7 @@ MonoBehaviour:
   - {fileID: 1328353554}
   - {fileID: 704982286}
   maxPoints: 40
+  data: {fileID: 0}
 --- !u!114 &2123430915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9064,6 +9078,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menus: []
+--- !u!114 &2123430916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123430911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0911e6ecb3f85e4f8bd7a2c57d340a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MySceneController
 --- !u!1001 &3057460186035441024
 PrefabInstance:
   m_ObjectHideFlags: 0
