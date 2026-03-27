@@ -465,6 +465,7 @@ public class SpellingBeeManager: MonoBehaviour
         UpdateProgressBar();
     }
 
+    private bool progressBarFull = false;
     void UpdateProgressBar() {
         
         progressText.text = points + "/" + maxPoints;
