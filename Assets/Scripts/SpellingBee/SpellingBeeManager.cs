@@ -465,7 +465,6 @@ public class SpellingBeeManager: MonoBehaviour
         UpdateProgressBar();
     }
 
-    private bool progressBarFull = false;
     void UpdateProgressBar() {
         
         progressText.text = points + "/" + maxPoints;
@@ -482,6 +481,12 @@ public class SpellingBeeManager: MonoBehaviour
             if (progress >= 0.33f) stars[0].SetActive(true);
             if (progress >= 0.66f) stars[1].SetActive(true);
             if (progress >= 1.00f) stars[2].SetActive(true);
+        }
+
+        if (points > maxPoints)
+        {
+            fillImage.rectTransform.sizeDelta = new Vector3(759f, fillImage.rectTransform.sizeDelta.y);
+            stars[2].SetActive(true);
         }
     }
 

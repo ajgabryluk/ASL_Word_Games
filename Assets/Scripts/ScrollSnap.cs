@@ -9,6 +9,8 @@ public class ScrollSnap : MonoBehaviour, IEndDragHandler
     public int pageCount;
     private float[] pagePositions;
 
+    public PaginationDots paginationDots;
+
     void Start()
     {
         pagePositions = new float[pageCount];
@@ -16,6 +18,8 @@ public class ScrollSnap : MonoBehaviour, IEndDragHandler
         {
             pagePositions[i] = (float)i / (pageCount - 1);
         }
+
+        paginationDots.SetupDots(pageCount);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -35,6 +39,10 @@ public class ScrollSnap : MonoBehaviour, IEndDragHandler
     {
         float time = 0;
         float start = scrollRect.horizontalNormalizedPosition;
+
+        int targetPageIndex = Mathf.RoundToInt(target * (pageCount - 1));
+        paginationDots.UpdateDots(targetPageIndex);
+
         while (time < 1)
         {
             time += Time.deltaTime * 10f; // Speed of snap
