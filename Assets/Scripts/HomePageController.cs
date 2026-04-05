@@ -14,6 +14,6 @@ public class HomePageController : MonoBehaviour
 
         // 3. Load the game scene
         // Make sure "SpellingBee" matches your scene name exactly!
-        SceneManager.LoadScene("SpellingBee");
+        SceneManager.LoadScene("SignBee_1");
     }
 }

@@ -6,13 +6,14 @@ public class ScrollSnap : MonoBehaviour, IEndDragHandler
 {
     public ScrollRect scrollRect;
     public RectTransform content;
-    public int pageCount;
+    private int pageCount;
     private float[] pagePositions;
 
     public PaginationDots paginationDots;
 
     void Start()
     {
+        pageCount = content.childCount;
         pagePositions = new float[pageCount];
         for (int i = 0; i < pageCount; i++)
         {

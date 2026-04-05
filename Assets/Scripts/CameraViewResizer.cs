@@ -19,7 +19,7 @@ public class CameraViewResizer : MonoBehaviour
     void Update()
     {
         // check if the painter or camera has assigned a texture yet
-        if (_rawImage.texture != null && _rawImage.texture.width > 100)
+        if (_rawImage.texture != null && _rawImage.texture.width > 0)
         {
             // calculate height/width ratio
             float ratio = (float)_rawImage.texture.height / (float)_rawImage.texture.width;

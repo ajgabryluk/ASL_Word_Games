@@ -12,6 +12,6 @@ public class LevelSelectButton : MonoBehaviour
         LevelDataBridge.presetWords = data.processedWords.ToArray();
         
         // Change "SpellingBee" to whatever your Game Scene is named
-        SceneManager.LoadScene("SpellingBee"); 
+        SceneManager.LoadScene("SignBee_1"); 
     }
 }

@@ -94,6 +94,7 @@ namespace Camera {
                         // Debug.Log($"Webcam rotation: {webCamTexture.videoRotationAngle}");
                         // Debug.Log($"Webcam resolution: {webCamTexture.width}x{webCamTexture.height}");
                         // TODO: Figure out a way to rotate the entire texture including the dimensions rather than just the UVs
+                        
                         var dest = new Texture2D(
                             webCamTexture.videoRotationAngle % 180 == 0 ? webCamTexture.width : webCamTexture.height, // webCamTexture.width, 
                             webCamTexture.videoRotationAngle % 180 == 0 ? webCamTexture.height : webCamTexture.width, // webCamTexture.height, 
